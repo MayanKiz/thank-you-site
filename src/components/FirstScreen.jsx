@@ -35,7 +35,7 @@ export default function FirstScreen({ onNext }) {
             {/* Audio */}
             <audio
                 ref={audioRef}
-                src="/gifs/Aaj-Se-Teri-Slowed-Reverb-Arijit-Singh-Padman-Akshay-Kumar-R.m4a"
+                src="/gifs/Long-Drive-Le-Chal-Slowed-Reverb-Lufi-Song-Rider-Song-slowed.m4a"
                 preload="auto"
                 loop
             />
