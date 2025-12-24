@@ -20,6 +20,4 @@ export function AudioProvider({ children }) {
   )
 }
 
-export function useGlobalAudio() {
-  return useContext(AudioContext)
-}
+export const useGlobalAudio = () => useContext(AudioContext)
