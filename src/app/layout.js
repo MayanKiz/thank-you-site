@@ -1,20 +1,17 @@
-import "./globals.css";
-import { AudioProvider } from "./AudioProvider";
+import "./globals.css"
+import { AudioProvider } from "@/components/AudioProvider"
 
 export const metadata = {
   title: "I Have Something to Say...",
-  description:
-    "This isn’t just a website. It’s something truly special, built with love — just for you.",
-};
+  description: "This isn’t just a website. It’s something truly special.",
+}
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className="antialiased">
-        <AudioProvider>
-          {children}
-        </AudioProvider>
+        <AudioProvider>{children}</AudioProvider>
       </body>
     </html>
-  );
+  )
 }
