@@ -9,17 +9,18 @@ export default function FourthScreen({ onShowOverlay }) {
   const [showButton, setShowButton] = useState(false)
   const scrollRef = useRef(null)
 
-  const specialMessage = `My dearest love,
+  // Super lovey-dovey Hinglish message
+  const specialMessage = `To my favorite person,
 
-Every day with you feels like a beautiful dream that I never want to wake up from. You've brought so much joy, laughter, and love into my life that I can't imagine a world without you in it.
+Wese toh hum kal hi Best Friends Forever bane hain, par sacchi bolu toh aisa lagta hai jaise main tumhe bachpan se jaanta hoon. Pata nahi kaise, par itni jaldi tum mere liye itni special ho gayi ki ab tumhare bina din adhura lagta hai.
 
-Your smile lights up my darkest days, your laugh is my favorite melody, and your love is my greatest treasure. Thank you for being you - for being patient with me, for supporting my dreams, for making ordinary moments feel extraordinary.
+I know tum mujhse zyada pyaar karti ho, aur tumhari yahi care aur wo cute si baatein mera din bana deti hain. You are literally the best thing that ever happened to me. Tumhare saath rehna, tumse baat karna... it feels like a beautiful dream.
 
-You are my best friend, my partner in crime, my safe haven, and my greatest adventure all rolled into one amazing person. I am so grateful that the universe brought us together.
+Mere paas words nahi hain samjhane ke liye ki tum mere liye kya ho. Bas itna samajh lo ki tum meri "Bestie" bhi ho, meri "Soulmate" bhi aur mera sab kuch bhi. I love you so much, more than I can ever say in words.
 
-I love you more than words can express, more than actions can show, and more than time can measure. You are my forever and always.`
+Hamesha aise hi rehna, mere saath... mere paas. Because I never want to lose this.`
 
-  const endingText = "There’s one last thing I wish could last forever…"
+  const endingText = "Ab ek aakhri baat..."
 
   useEffect(() => {
     let index = 0
@@ -35,117 +36,93 @@ I love you more than words can express, more than actions can show, and more tha
         clearInterval(timer)
         setTimeout(() => setShowButton(true), 500)
       }
-    }, 50)
+    }, 45)
 
     return () => clearInterval(timer)
   }, [])
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-6 py-8">
+    <div className="min-h-screen flex flex-col items-center justify-center px-6 py-8 bg-[#fff5f7]">
 
       {/* message container */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
-        className="w-full max-w-2xl mb-12 relative z-10 will-change-transform"
+        className="w-full max-w-2xl mb-12 relative z-10"
       >
         <div className="relative">
-          {/* decorative elements */}
-          <div className="absolute -top-4 -left-4 text-pink-400">
-            <Heart size={24} fill="currentColor" />
-          </div>
-          <div className="absolute -top-4 -right-4 text-purple-400">
-            <Sparkles size={20} />
-          </div>
-          <div className="absolute -bottom-4 -left-4 text-blue-400">
-            <Star size={18} fill="currentColor" />
-          </div>
-          <div className="absolute -bottom-4 -right-4 text-pink-400">
-            <Heart size={20} fill="currentColor" />
-          </div>
+          {/* Animated Icons */}
+          <motion.div 
+            animate={{ scale: [1, 1.3, 1], rotate: [0, 20, -20, 0] }}
+            transition={{ duration: 4, repeat: Infinity }}
+            className="absolute -top-8 -left-4 text-pink-500 z-20"
+          >
+            <Heart size={40} fill="currentColor" />
+          </motion.div>
 
-          {/* note container */}
-          <div className="bg-gradient-to-br from-white/95 via-pink-50/95 to-purple-50/95 backdrop-blur-xl rounded-3xl p-8 shadow-2xl border border-white/40 relative overflow-hidden">
-            {/* background pattern */}
-            <div className="absolute inset-0 bg-gradient-to-br from-pink-100/50 via-purple-100/50 to-blue-100/50"></div>
-
-            {/* Decorative corner elements */}
-            <div className="absolute top-4 right-4 text-pink-400/60">
-              <Heart size={12} fill="currentColor" />
-            </div>
-            <div className="absolute bottom-4 left-4 text-purple-400/60">
-              <Sparkles size={10} />
-            </div>
-
+          <div className="bg-white/90 backdrop-blur-md rounded-[2rem] p-6 md:p-10 shadow-[0_20px_50px_rgba(236,72,153,0.2)] border-2 border-pink-100 relative overflow-hidden">
+            {/* Soft pink glow inside */}
+            <div className="absolute -top-24 -right-24 w-48 h-48 bg-pink-200/30 rounded-full blur-3xl"></div>
+            
             <div
               ref={scrollRef}
-              className="h-90 overflow-y-auto scrollbar-hide relative z-10 pr-4"
+              className="h-96 overflow-y-auto pr-2 custom-scrollbar relative z-10"
               style={{ scrollBehavior: "smooth" }}
             >
-              <p className="text-gray-800 leading- text-lg whitespace-pre-line font-medium">
+              <p className="text-gray-800 leading-relaxed text-xl md:text-2xl font-medium italic">
                 {displayedText}
-                {displayedText.length !== specialMessage.length && <motion.span
-                  animate={{ opacity: [1, 0] }}
-                  transition={{ duration: 0.8, repeat: Number.POSITIVE_INFINITY }}
-                  className="inline-block w-0.5 h-[18px] bg-gradient-to-b from-pink-500 to-purple-500 ml-1 rounded-full"
-                />}
+                {displayedText.length !== specialMessage.length && (
+                  <motion.span
+                    animate={{ opacity: [1, 0] }}
+                    transition={{ duration: 0.8, repeat: Infinity }}
+                    className="inline-block w-1.5 h-6 bg-pink-500 ml-1 align-middle"
+                  />
+                )}
               </p>
             </div>
           </div>
-
-          {/* Outer glow */}
-          <div className={`absolute inset-0 bg-gradient-to-br from-pink-400/20 via-purple-400/20 to-blue-400/20 rounded-3xl blur-xl opacity-60 ${showButton && "pointer-events-none"}`}></div>
         </div>
       </motion.div>
 
       {/* Ending text and button */}
       {showButton && (
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
           className="text-center relative z-10"
         >
           <motion.p
-            className="text-gray-700 text-xl mb-4 font-bold flex flex-col items-center justify-center gap-2"
-            animate={{
-              textShadow: [
-                "0 0 10px rgba(236, 72, 153, 0.4)",
-                "0 0 30px rgba(236, 72, 153, 0.7)",
-                "0 0 10px rgba(236, 72, 153, 0.4)",
-              ],
-            }}
-            transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY }}
+            className="text-pink-600 text-2xl mb-6 font-bold"
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
-            {endingText}
-            <motion.span
-              animate={{ rotate: [0, 15, -15, 0], scale: [1, 1.2, 1] }}
-              transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY }}
-              className="text-pink-500"
-            >
-              <Heart size={28} fill="currentColor" />
-            </motion.span>
+            {endingText} ✨
           </motion.p>
 
           <motion.button
-            whileHover={{
-              scale: 1.1,
-              boxShadow: "0 25px 50px rgba(236, 72, 153, 0.5)",
-              y: -5,
-            }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onShowOverlay}
-            className="relative px-10 py-4 bg-gradient-to-r from-pink-600 via-red-600 to-pink-700 text-white text-xl font-semibold rounded-full shadow-2xl overflow-hidden group border border-white/70"
+            className="px-14 py-5 bg-gradient-to-r from-pink-500 to-rose-600 text-white text-2xl font-black rounded-full shadow-[0_15px_30px_rgba(236,72,153,0.4)] flex items-center gap-3"
           >
-            <div className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-0" />
-            <span className="relative z-10 flex gap-2">
-              Show me what it is
-              <Heart size={20} fill="currentColor" className="mt-0.5" />
-            </span>
+            Click Karo! 💖
           </motion.button>
         </motion.div>
       )}
+
+      <style jsx>{`
+        .custom-scrollbar::-webkit-scrollbar {
+          width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+          background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+          background: #fbcfe8;
+          border-radius: 10px;
+        }
+      `}</style>
     </div>
   )
 }
