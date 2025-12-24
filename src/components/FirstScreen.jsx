@@ -52,7 +52,7 @@ export default function FirstScreen({ onNext }) {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center px-6 text-center relative overflow-hidden bg-[#fffafa]">
             
-            <audio ref={audioRef} src="/music/song.mp3" loop />
+            <audio ref={audioRef} src="/gifs/Aaj-Se-Teri-Slowed-Reverb-Arijit-Singh-Padman-Akshay-Kumar-R.m4a" loop />
 
             {/* Countdown Display */}
             <motion.div 
